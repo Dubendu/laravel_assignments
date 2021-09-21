@@ -12,7 +12,7 @@
                 <span id="err1" class="text-danger">@error('name'){{$message}}@enderror</span>
             </div>
             <div class="mb-3">
-                <label class="form-label">Sub Category</label>
+                <label class="form-label">Sub Category Of</label>
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="category_id" id="category_id">
                     <option value=""></option>
                     @foreach($categories as $category)

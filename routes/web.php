@@ -42,6 +42,9 @@ Route::get('/banner/listbanner',[BannerController::class,'show']);
 Route::get('/banner/delete/{id}',[BannerController::class,'delete']);
 Route::get('/banner/edit/{id}',[BannerController::class,'edit']);
 Route::post('/banner/update',[BannerController::class,'update']);
+Route::get('/banner/trash',[BannerController::class,'trash'])->name('banner.trash');
+Route::get('/banner/restore/{id}',[BannerController::class,'restore'])->name('banner.restore');
+Route::get('/banner/force-delete/{id}',[BannerController::class,'forceDelete'])->name('banner.force-delete');
 
 //Category
 
@@ -52,6 +55,9 @@ Route::get('/category/list',[CategoryController::class,'show'])->name('category.
 Route::get('/category/delete/{id}',[CategoryController::class,'delete']);
 Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
 Route::post('/category/update',[CategoryController::class,'update']);
+Route::get('/category/trash',[CategoryController::class,'trash'])->name('category.trash');
+Route::get('/category/restore/{id}',[CategoryController::class,'restore'])->name('category.restore');
+Route::get('/category/force-delete/{id}',[CategoryController::class,'forceDelete'])->name('category.force-delete');
 
 //product
 
@@ -62,6 +68,9 @@ Route::get('/product/list',[ProductController::class,'show']);
 Route::get('/product/delete/{id}',[ProductController::class,'delete']);
 Route::get('/product/edit/{id}',[ProductController::class,'edit']);
 Route::post('/product/update',[ProductController::class,'update']);
+Route::get('/product/trash',[ProductController::class,'trash'])->name('product.trash');
+Route::get('/product/restore/{id}',[ProductController::class,'restore'])->name('product.restore');
+Route::get('/product/force-delete/{id}',[ProductController::class,'forceDelete'])->name('product.force-delete');
 Route::get('/product/display/{id}',[ProductController::class,'display']);
 Route::get('/product/extraimages/{id}',[ProductController::class,'extraImages'])->name('product.extraImages');
 Route::post('/product/extraimages',[ProductController::class,'extraImagesStore'])->name('product.extraImagesStore');

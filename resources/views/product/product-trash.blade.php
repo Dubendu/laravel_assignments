@@ -1,10 +1,9 @@
 @extends('admin.master')
-@section('listproduct')
+@section('trashproduct')
 <div class="content-wrapper">
     <div class="container">
-        <h1 style="text-align:center">Manage Product List</h1>
-        <button class="btn btn-success" onclick="window.location='{{ url("/product/add") }}'">Add Product</button>
-        <button class="btn btn-danger" onclick="window.location='{{ url("/product/trash") }}'">Go To Trash</button>
+        <h1 style="text-align:center">Manage Product Trash</h1>
+        <button class="btn btn-success" onclick="window.location='{{ url()->previous() }}'">Go Back</button>
         <table class="table table-striped">
                 <tr>
                     <th>ID</th>
@@ -31,13 +30,12 @@
                     <td>
                         <a href="{{route('product.showImages',$product->id)}}"><img src="{{asset('uploads/products/'.$product->image)}}" alt="Image" width="80px" height="50px"></a>
                     </td>
-                    <td><button class="btn btn-primary"><a class="edit-del-link" title="Add" href="{{route('product.extraImages',$product->id)}}"><i class="fa fa-table"></i></a></button>
-                    <button class="btn btn-danger"><a class="edit-del-link" title="Delete" onclick="return confirm('Data will move to trash. Are you want to continue?')" href={{"/product/delete/".$product['id']}}><i class="fa fa-trash"></i></a></button>
-                    <button class="btn btn-warning"> <a class="edit-del-link" title="Edit" href={{"/product/edit/".$product['id']}}><i class="fa fa-edit"></i></a></button></td>
+                    <td>
+                    <button class="btn btn-danger"><a class="edit-del-link" title="Delete" onclick="return confirm('Are you sure? Data will delete permanently')" href={{"/product/force-delete/".$product['id']}}>Delete</a></button>
+                    <button class="btn btn-success"> <a class="edit-del-link" title="Edit" href={{"/product/restore/".$product['id']}}>Restore</a></button></td>
                 </tr>
                 @endforeach
             </table> 
     </div>
-    <span style="text-align:center;">{{$products->links()}}</span>
 </div>
 @endsection

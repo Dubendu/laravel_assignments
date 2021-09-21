@@ -170,4 +170,22 @@ class ProductController extends Controller
         $data=ProductImage::where("product_id",$id)->first();
         return view('product.productImages',['image'=>$data]);
     }
+
+    public function trash()
+    {
+        $data=Product::onlyTrashed()->get();
+        return view('product.product-trash',['products'=>$data]);
+    }
+    public function restore($id)
+    {
+        $data=Product::withTrashed()->findOrFail($id);
+        $data->restore();
+        return redirect('/product/list');
+    }
+    public function forceDelete($id)
+    {
+        $data=Product::withTrashed()->findOrFail($id);
+        $data->forceDelete();
+        return redirect('/product/list');
+    }
 }

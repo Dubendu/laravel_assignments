@@ -28,6 +28,23 @@ class CategoryController extends Controller
         return view('category.add',['categories'=>$data]);
     }
 
+    public function trash()
+    {
+        $data=Category::onlyTrashed()->get();
+        return view('category.category-trash',['categories'=>$data]);
+    }
+    public function restore($id)
+    {
+        $data=Category::withTrashed()->findOrFail($id);
+        $data->restore();
+        return redirect('/category/list');
+    }
+    public function forceDelete($id)
+    {
+        $data=Category::withTrashed()->findOrFail($id);
+        $data->forceDelete();
+        return redirect('/category/list');
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -125,8 +125,21 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function trash()
     {
-        //
+        $data=Banner::onlyTrashed()->get();
+        return view('banner.banner-trash',['records'=>$data]);
+    }
+    public function restore($id)
+    {
+        $data=Banner::withTrashed()->findOrFail($id);
+        $data->restore();
+        return redirect('/banner/listbanner');
+    }
+    public function forceDelete($id)
+    {
+        $data=Banner::withTrashed()->findOrFail($id);
+        $data->forceDelete();
+        return redirect('/banner/listbanner');
     }
 }

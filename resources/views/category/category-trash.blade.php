@@ -1,11 +1,10 @@
 @extends('admin.master')
-@section('listcategory')
+@section('trashcategory')
 </style>
 <div class="content-wrapper">
     <div class="container">
-        <h1 style="text-align:center">Manage Category List</h1>
-        <button class="btn btn-danger" onclick="window.location='{{ url("/category/trash") }}'">Go To Trash</button>
-        <button class="btn btn-success" onclick="window.location='{{ url("/category/add") }}'">Add Category</button>
+        <h1 style="text-align:center">Manage Category Trash</h1>
+        <button class="btn btn-success" onclick="window.location='{{ url()->previous() }}'">Go Back</button>
         <table class="table table-striped">
                 <tr>
                     <th>ID</th>
@@ -24,12 +23,11 @@
                         Major Category
                         @endif
                     </td>
-                    <td><button class="btn btn-danger"><a class="edit-del-link" onclick="return confirm('Data will move to Trash. Are you want to continue??')" href={{"/category/delete/".$category['id']}}><i class="fa fa-trash"></i></a></button>
-                    <button class="btn btn-warning"> <a class="edit-del-link" href={{"/category/edit/".$category['id']}}><i class="fa fa-edit"></i></a></button></td>
+                    <td><button class="btn btn-danger"><a class="edit-del-link" onclick="return confirm('Are you sure? Data will delete permanently.')" href={{"/category/force-delete/".$category['id']}}>Delete</a></button>
+                    <button class="btn btn-success"> <a class="edit-del-link" href={{"/category/restore/".$category['id']}}>Restore</a></button></td>
                 </tr>
                 @endforeach
             </table> 
     </div>
-    <span style="text-align:center;">{{$categories->links()}}</span>
 </div>
 @endsection
